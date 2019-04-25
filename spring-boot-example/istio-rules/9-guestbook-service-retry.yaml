@@ -1,14 +1,18 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: guestbook-service
+  name: helloworld-service
 spec:
   hosts:
-  - guestbook-service
+  - helloworld-service
   http:
   - route:
     - destination:
-        host: guestbook-service
+        host: helloworld-service
+    fault:
+      delay:
+        percent: 60
+        fixedDelay: 5s
     retries:
-      attempts: 3
-      perTryTimeout: 2s
+      attempts: 5
+      perTryTimeout: 1s

@@ -10,6 +10,7 @@ spec:
     - destination:
         host: helloworld-service
     fault:
-      delay:
-        percent: 60
-        fixedDelay: 5s
+      abort:
+        percent: 100
+        httpStatus: 503
+
