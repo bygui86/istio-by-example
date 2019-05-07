@@ -11,5 +11,5 @@ spec:
         host: helloworld-service
     fault:
       delay:
-        percent: 60
+        percent: 100
         fixedDelay: 5s
