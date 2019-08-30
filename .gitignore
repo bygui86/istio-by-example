@@ -73,3 +73,27 @@ target/
 
 ###################### Proejct-Specific #########
 # -
+
+
+
+###################### GoLang ###################
+
+########### Binaries
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+########### Test binaries
+*.test
+
+########### Go coverage tool output (LiteIDE)
+*.out
+
+########### Vendor
+vendor/*
+!vendor/.gitkeep
+
+########### Project specific
+helloworld-service
