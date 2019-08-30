@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-server
+  labels:
+    app: echo-server
+    group: sample
+    version: 0.0.1
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: echo-server
+      group: sample
+      version: 0.0.1
+  template:
+    metadata:
+      labels:
+        app: echo-server
+        group: sample
+        version: 0.0.1
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: echo-server
+          image: echo-server:latest
+          # Kubernetes
+          # imagePullPolicy: Always
+          # Minikube
+          imagePullPolicy: IfNotPresent
+          # envFrom:
+            # - configMapRef:
+            #     name: echo-server
+          ports:
+            - name: http
+              containerPort: 7001
+            - name: http-metrics
+              containerPort: 7090
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: 7090
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 7090
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+      terminationGracePeriodSeconds: 30

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: echo-server
+  labels:
+    app: echo-server
+    group: sample
+data:
+  ECHOSERVER_KUBE_HOST: "0.0.0.0"
+  # ECHOSERVER_KUBE_PORT: "7090"
+  # ECHOSERVER_KUBE_SHUTDOWN_TIMEOUT: "15"
+  ECHOSERVER_MONITOR_HOST: "0.0.0.0"
+  # ECHOSERVER_MONITOR_PORT: "7091"
+  # ECHOSERVER_MONITOR_SHUTDOWN_TIMEOUT: "15"
+  ECHOSERVER_REST_HOST: "0.0.0.0"
+  # ECHOSERVER_REST_PORT: "7001"
+  # ECHOSERVER_REST_SHUTDOWN_TIMEOUT: "15"
