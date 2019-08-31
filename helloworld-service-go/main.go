@@ -5,10 +5,10 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/bygui86/go-metrics/kubernetes"
-	"github.com/bygui86/go-metrics/monitoring"
-	"github.com/bygui86/go-metrics/rest"
-	"github.com/bygui86/go-metrics/utils/logger"
+	"github.com/bygui86/helloworld-service-go/kubernetes"
+	"github.com/bygui86/helloworld-service-go/monitoring"
+	"github.com/bygui86/helloworld-service-go/rest"
+	"github.com/bygui86/helloworld-service-go/logger"
 )
 
 // main -

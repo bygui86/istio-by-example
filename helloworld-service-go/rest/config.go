@@ -1,23 +1,27 @@
 package rest
 
 import (
-	"github.com/bygui86/go-metrics/utils"
-	"github.com/bygui86/go-metrics/utils/logger"
+	"github.com/bygui86/helloworld-service-go/logger"
+	"github.com/bygui86/helloworld-service-go/utils"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 )
 
 const (
 	// Environment variables -
-	restHostEnvVar            = "ECHOSERVER_REST_HOST"
-	restPortEnvVar            = "ECHOSERVER_REST_PORT"
-	restShutdownTimeoutEnvVar = "ECHOSERVER_REST_SHUTDOWN_TIMEOUT"
+	restHostEnvVar            = "HELLOSVC_REST_HOST"
+	restPortEnvVar            = "HELLOSVC_REST_PORT"
+	restShutdownTimeoutEnvVar = "HELLOSVC_REST_SHUTDOWN_TIMEOUT"
+	restGreeting              = "HELLOSVC_REST_GREETING"
+	restVersion               = "HELLOSVC_REST_VERSION"
 
 	// Default values -
 	// host values: '0.0.0.0' for kubernetes, 'localhost' for local
 	restHostDefault            = "localhost"
-	restPortDefault            = 7001
+	restPortDefault            = 8080
 	restShutdownTimeoutDefault = 15
+	restGreetingDefault        = "Hello %s from %s with %s"
+	restVersionDefault         = "1.0"
 
 	// Custom metrics -
 	metricsGeneralNamespace   = "general"
@@ -35,14 +39,15 @@ type Config struct {
 	RestHost        string
 	RestPort        int
 	ShutdownTimeout int
+	Greeting        string
+	Version         string
 	CustomMetrics   *CustomMetrics
 }
 
 // CustomMetrics - Container object for custom metrics
 type CustomMetrics struct {
-	opsProcessed    *prometheus.CounterVec
-	echoRequests    prometheus.Counter
-	echoMsgRequests prometheus.Counter
+	opsProcessed  *prometheus.CounterVec
+	helloRequests prometheus.Counter
 }
 
 // newConfig -
@@ -54,6 +59,8 @@ func newConfig() (*Config, error) {
 		RestHost:        utils.GetStringEnv(restHostEnvVar, restHostDefault),
 		RestPort:        utils.GetIntEnv(restPortEnvVar, restPortDefault),
 		ShutdownTimeout: utils.GetIntEnv(restShutdownTimeoutEnvVar, restShutdownTimeoutDefault),
+		Greeting:        utils.GetStringEnv(restGreeting, restGreetingDefault),
+		Version:         utils.GetStringEnv(restVersion, restVersionDefault),
 		CustomMetrics:   newCustomMetrics(),
 	}, nil
 }
@@ -71,17 +78,11 @@ func newCustomMetrics() *CustomMetrics {
 			},
 			[]string{"type"},
 		),
-		echoRequests: promauto.NewCounter(prometheus.CounterOpts{
+		helloRequests: promauto.NewCounter(prometheus.CounterOpts{
 			Namespace: metricsGeneralNamespace,
 			Subsystem: metricsRestSubsystem,
 			Name:      echoRequestsMetricName,
 			Help:      echoRequestsMetricHelp,
-		}),
-		echoMsgRequests: promauto.NewCounter(prometheus.CounterOpts{
-			Namespace: metricsGeneralNamespace,
-			Subsystem: metricsRestSubsystem,
-			Name:      echoMsgRequestsMetricName,
-			Help:      echoMsgRequestsMetricHelp,
 		}),
 	}
 }
@@ -92,14 +93,8 @@ func (cm *CustomMetrics) incrementOpsProcessed(opType string) {
 	cm.opsProcessed.WithLabelValues(opType).Inc()
 }
 
-// incrementEchoRequests - Increment total number of default echo requests
-func (cm *CustomMetrics) incrementEchoRequests() {
+// incrementNameRequests - Increment total number of echo requests with message
+func (cm *CustomMetrics) incrementHelloRequests() {
 
-	cm.echoRequests.Inc()
-}
-
-// incrementEchoMsgRequests - Increment total number of echo requests with message
-func (cm *CustomMetrics) incrementEchoMsgRequests() {
-
-	cm.echoMsgRequests.Inc()
+	cm.helloRequests.Inc()
 }

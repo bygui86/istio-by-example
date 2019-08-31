@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/bygui86/go-metrics/utils/logger"
+	"github.com/bygui86/helloworld-service-go/logger"
 )
 
 const (

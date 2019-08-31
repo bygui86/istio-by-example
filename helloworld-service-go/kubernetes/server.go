@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/bygui86/go-metrics/utils/logger"
+	"github.com/bygui86/helloworld-service-go/logger"
 
 	"github.com/gorilla/mux"
 )

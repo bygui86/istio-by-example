@@ -1,20 +1,20 @@
 package monitoring
 
 import (
-	"github.com/bygui86/go-metrics/utils"
-	"github.com/bygui86/go-metrics/utils/logger"
+	"github.com/bygui86/helloworld-service-go/utils"
+	"github.com/bygui86/helloworld-service-go/logger"
 )
 
 const (
 	// Environment variables -
-	monHostEnvVar            = "ECHOSERVER_MONITOR_HOST"
-	monPortEnvVar            = "ECHOSERVER_MONITOR_PORT"
-	monShutdownTimeoutEnvVar = "ECHOSERVER_MONITOR_SHUTDOWN_TIMEOUT"
+	monHostEnvVar            = "HELLOSVC_MONITOR_HOST"
+	monPortEnvVar            = "HELLOSVC_MONITOR_PORT"
+	monShutdownTimeoutEnvVar = "HELLOSVC_MONITOR_SHUTDOWN_TIMEOUT"
 
 	// Default values -
 	// host values: '0.0.0.0' for kubernetes, 'localhost' for local
 	monHostDefault     = "localhost"
-	monPortDefault     = 7091
+	monPortDefault     = 8090
 	monShutdownTimeout = 15
 )
 

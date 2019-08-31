@@ -1,20 +1,20 @@
 package kubernetes
 
 import (
-	"github.com/bygui86/go-metrics/utils"
-	"github.com/bygui86/go-metrics/utils/logger"
+	"github.com/bygui86/helloworld-service-go/logger"
+	"github.com/bygui86/helloworld-service-go/utils"
 )
 
 const (
 	// Environment variables -
-	kubeHostEnvVar            = "ECHOSERVER_KUBE_HOST"
-	kubePortEnvVar            = "ECHOSERVER_KUBE_PORT"
-	kubeShutdownTimeoutEnvVar = "ECHOSERVER_KUBE_SHUTDOWN_TIMEOUT"
+	kubeHostEnvVar            = "HELLOSVC_KUBE_HOST"
+	kubePortEnvVar            = "HELLOSVC_KUBE_PORT"
+	kubeShutdownTimeoutEnvVar = "HELLOSVC_KUBE_SHUTDOWN_TIMEOUT"
 
 	// Default values -
 	// host values: '0.0.0.0' for kubernetes, 'localhost' for local
 	kubeHostDefault     = "localhost"
-	kubePortDefault     = 7090
+	kubePortDefault     = 8091
 	kubeShutdownTimeout = 15
 )
 

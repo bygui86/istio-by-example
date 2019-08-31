@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/bygui86/go-metrics/utils/logger"
+	"github.com/bygui86/helloworld-service-go/logger"
 
 	"github.com/gorilla/mux"
 )
@@ -48,16 +48,9 @@ func newRouter(cfg *Config) *mux.Router {
 	logger.Log.Debugln("[REST] Setup new Router config...")
 
 	router := mux.NewRouter().StrictSlash(false)
-	// router.HandleFunc("/echo", echo).Methods(http.MethodGet)
-	// router.HandleFunc("/echo/{msg}", echo).Methods(http.MethodGet)
 	router.
-		HandleFunc("/echo", func(w http.ResponseWriter, r *http.Request) {
-			echoWithMetrics(w, r, cfg.CustomMetrics)
-		}).
-		Methods(http.MethodGet)
-	router.
-		HandleFunc("/echo/{msg}", func(w http.ResponseWriter, r *http.Request) {
-			echoWithMetrics(w, r, cfg.CustomMetrics)
+		HandleFunc("/hello/{name}", func(w http.ResponseWriter, r *http.Request) {
+			hello(w, r, cfg)
 		}).
 		Methods(http.MethodGet)
 	return router
