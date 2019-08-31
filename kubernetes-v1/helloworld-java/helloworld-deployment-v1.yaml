@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: helloworld-service
-        image: bygui86/guestbook-example/helloworld-service-java:latest
+        image: bygui86/helloworld-service-java:latest
         livenessProbe:
           initialDelaySeconds: 60
           httpGet:

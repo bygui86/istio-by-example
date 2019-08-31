@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: guestbook-ui
-        image: bygui86/guestbook-example/guestbook-ui:2.0
+        image: bygui86/guestbook-ui:2.0
         # Kubernetes
         # imagePullPolicy: Always
         # Minikube

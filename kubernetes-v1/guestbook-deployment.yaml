@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: guestbook-service
-        image: bygui86/guestbook-example/guestbook-service:latest
+        image: bygui86/guestbook-service:latest
         livenessProbe:
           initialDelaySeconds: 90
           httpGet:

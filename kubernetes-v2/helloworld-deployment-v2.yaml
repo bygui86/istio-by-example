@@ -30,7 +30,7 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
         - name: helloworld-service
-          image: bygui86/guestbook-example/helloworld-service-go:latest
+          image: bygui86/helloworld-service-go:latest
           # Kubernetes
           # imagePullPolicy: Always
           # Minikube
