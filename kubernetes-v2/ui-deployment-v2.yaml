@@ -25,7 +25,11 @@ spec:
     spec:
       containers:
       - name: guestbook-ui
-        image: saturnism/guestbook-ui-istio:2.0
+        image: bygui86/guestbook-example/guestbook-ui:2.0
+        # Kubernetes
+        # imagePullPolicy: Always
+        # Minikube
+        imagePullPolicy: IfNotPresent
         env:
         - name: BACKEND_GUESTBOOK_SERVICE_URL
           value: http://guestbook-service/messages

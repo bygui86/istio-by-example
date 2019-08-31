@@ -4,11 +4,11 @@ metadata:
   name: helloworld-service
   labels:
     app: helloworld-service
-    group: guestbook-example
+    visualize: "true"
 spec:
   selector:
     app: helloworld-service
-    group: guestbook-example
+    serving: "true"
   ports:
     - name: http
       port: 8080

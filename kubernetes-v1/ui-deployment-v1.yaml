@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
       - name: guestbook-ui
-        image: saturnism/guestbook-ui-istio:1.0
+        image: bygui86/guestbook-example/guestbook-ui:latest
         env:
         - name: BACKEND_GUESTBOOK_SERVICE_URL
           value: http://guestbook-service/messages

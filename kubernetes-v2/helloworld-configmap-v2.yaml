@@ -4,7 +4,6 @@ metadata:
   name: helloworld-service-v2
   labels:
     app: helloworld-service
-    group: guestbook-example
 data:
   HELLOSVC_KUBE_HOST: "0.0.0.0"
   HELLOSVC_MONITOR_HOST: "0.0.0.0"
