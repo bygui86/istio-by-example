@@ -1,4 +1,4 @@
-FROM openjdk:8u131-jre-alpine
+FROM openjdk:11-stretch
 
 COPY target/lib/* /app/lib/
 COPY target/guestbook-service-0.0.1.jar /app/app.jar
