@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-/**
- * Created by rayt on 5/1/17.
- */
 @Controller
 @SessionAttributes("name")
 public class HelloworldUiController {

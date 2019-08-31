@@ -9,9 +9,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by rayt on 5/1/17.
- */
 public class HelloworldService {
 
   private final static Log log = LogFactory.getLog(HelloworldService.class);
