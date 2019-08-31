@@ -1,45 +1,71 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld-service-v1
+  name: helloworld-service
   labels:
     app: helloworld-service
+    group: guestbook-example
     version: "1.0"
-    visualize: "true"
 spec:
-  replicas: 2
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 1
   selector:
     matchLabels:
       app: helloworld-service
+      group: guestbook-example
       version: "1.0"
-      serving: "true"
   template:
     metadata:
       labels:
         app: helloworld-service
+        group: guestbook-example
         version: "1.0"
-        serving: "true"
-        visualize: "true"
     spec:
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
       containers:
-      - name: helloworld-service
-        image: saturnism/helloworld-service-istio:1.0
-        livenessProbe:
-          initialDelaySeconds: 60
-          httpGet:
-            path: /actuator/health
-            port: 8080
-        readinessProbe:
-          httpGet:
-            path: /hello/ready
-            port: 8080
-        ports:
-        - name: http
-          containerPort: 8080
-        resources:
-          requests:
-            cpu: 400m
-            memory: 500Mi
-          limits:
-            cpu: 1500m
-            memory: 1000Mi
+        - name: helloworld-service
+          image: bygui86/guestbook-example/helloworld-service-go:latest
+          # Kubernetes
+          # imagePullPolicy: Always
+          # Minikube
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: helloworld-service-v1
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: http-metrics
+              containerPort: 8090
+            - name: http-probes
+              containerPort: 8091
+          resources:
+            limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          livenessProbe:
+            httpGet:
+              path: /live
+              port: 8091
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8091
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            successThreshold: 1
+            failureThreshold: 3
