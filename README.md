@@ -24,8 +24,15 @@ cd -
 ```
 ```
 cd guestbook-ui/
-docker build . -t bygui86/guestbook-example/guestbook-ui:latest
-docker push bygui86/guestbook-example/guestbook-ui:latest
+docker build . -t bygui86/guestbook-example/guestbook-ui:1.0
+docker push bygui86/guestbook-example/guestbook-ui:1.0
+cd -
+```
+`Change background color in 'guestbook-ui/src/main/resources/templates/index.html'`
+```
+cd guestbook-ui/
+docker build . -t bygui86/guestbook-example/guestbook-ui:2.0
+docker push bygui86/guestbook-example/guestbook-ui:2.0
 cd -
 ```
 ```
