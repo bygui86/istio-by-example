@@ -25,10 +25,11 @@ spec:
     spec:
       containers:
       - name: guestbook-ui
-        image: bygui86/guestbook-ui:latest
-        env:
-        - name: BACKEND_GUESTBOOK_SERVICE_URL
-          value: http://guestbook-service/messages
+        image: bygui86/guestbook-ui:1.0
+        imagePullPolicy: Always
+        # env:
+        # - name: BACKEND_GUESTBOOK_SERVICE_URL
+        #   value: http://guestbook-service/messages
         livenessProbe:
           initialDelaySeconds: 60
           httpGet:

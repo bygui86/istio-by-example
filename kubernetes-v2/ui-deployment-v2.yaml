@@ -26,13 +26,10 @@ spec:
       containers:
       - name: guestbook-ui
         image: bygui86/guestbook-ui:2.0
-        # Kubernetes
-        # imagePullPolicy: Always
-        # Minikube
-        imagePullPolicy: IfNotPresent
-        env:
-        - name: BACKEND_GUESTBOOK_SERVICE_URL
-          value: http://guestbook-service/messages
+        imagePullPolicy: Always
+        # env:
+        # - name: BACKEND_GUESTBOOK_SERVICE_URL
+        #   value: http://guestbook-service/messages
         livenessProbe:
           initialDelaySeconds: 60
           httpGet:
