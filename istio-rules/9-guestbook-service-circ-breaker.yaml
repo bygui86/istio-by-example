@@ -1,9 +1,9 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: helloworld-service
+  name: guestbook-service
 spec:
-  host: helloworld-service
+  host: guestbook-service
   trafficPolicy:
     connectionPool:
       http:
