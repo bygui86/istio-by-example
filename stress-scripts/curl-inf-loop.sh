@@ -12,6 +12,7 @@ ENDPOINT="$3"
 
 while [ true ]
 do
-	curl --connect-timeout 3 --max-time 3 $HOST:$PORT/$ENDPOINT
+	curl -s -L -I -w "%{http_code}" -o /dev/null --connect-timeout 3 --max-time 3 $HOST:$PORT/$ENDPOINT
+	printf "\n"
 	sleep 1
 done
