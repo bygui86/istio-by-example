@@ -36,11 +36,11 @@ spec:
               - "localhost"
               - "8080"
               - "actuator/health"
-            initialDelaySeconds: 60
-            periodSeconds: 10
-            timeoutSeconds: 3
-            successThreshold: 1
-            failureThreshold: 3
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 3
         readinessProbe:
           exec:
             command:
@@ -48,11 +48,11 @@ spec:
               - "localhost"
               - "8080"
               - ""
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            timeoutSeconds: 3
-            successThreshold: 1
-            failureThreshold: 3
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 3
         ports:
         - name: http
           containerPort: 8080
