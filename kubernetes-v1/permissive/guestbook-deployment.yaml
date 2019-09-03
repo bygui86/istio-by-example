@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: guestbook-service-v1
+  name: guestbook-service
   labels:
     app: guestbook-service
     version: "1.0"
