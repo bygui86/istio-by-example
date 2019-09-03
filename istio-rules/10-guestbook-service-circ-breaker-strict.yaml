@@ -5,14 +5,16 @@ metadata:
 spec:
   host: guestbook-service
   trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
     connectionPool:
+      tcp:
+        maxConnections: 1
       http:
         http1MaxPendingRequests: 1
         maxRequestsPerConnection: 1
-      tcp:
-        maxConnections: 1
     outlierDetection:
-      baseEjectionTime: 120.000s
-      consecutiveErrors: 2
-      interval: 1.000s
+      consecutiveErrors: 1
+      interval: 1s
+      baseEjectionTime: 3m
       maxEjectionPercent: 100
