@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+  labels:
+    app: helloworld-service
+    visualize: "true"
+spec:
+  selector:
+    app: helloworld-service
+    serving: "true"
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: http-metrics
+      port: 8090
+      targetPort: 8090
+      protocol: TCP
+    - name: http-probes
+      port: 8091
+      targetPort: 8091
+      protocol: TCP
