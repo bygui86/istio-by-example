@@ -4,7 +4,7 @@ metadata:
   name: "bad-rule"
   namespace: "default"
 spec:
-  host: "httpbin.default.svc.cluster.local"
+  host: "helloworld-service.default.svc.cluster.local"
   trafficPolicy:
     tls:
       mode: DISABLE
